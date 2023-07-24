@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,500;1,100&family=Pacifico&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+:root{
+--main-color:#24353f;
+--second-color:#17a2b8;
+--main-box-shadow: -5px 2px 54px -9px rgba(0, 0, 0, 1);
+font-size: 10px;
+}
+
+
+body {
+  background-color: var(--main-color);
+    font-family: 'Titillium Web', sans-serif;
+   
+}
+.size{
+  width: 95%;  
+  margin-top: 1rem; 
+  font-size: 1.5rem;
+  color: #babcbc;
+}
+
+#header{
+  width: 65%;
+  padding: 2rem;
+  margin: auto;
+  margin-top: 4rem;
+  background-color: var(--main-color);
+  box-shadow: var(--main-box-shadow);
+}
+
+#header h1{
+  color: var(--second-color);
+  font-size: 4rem;
+  line-height:48px;
+  vertical-align:baseline;
+  letter-spacing:normal;
+  word-spacing:0px;
+  margin:0px 0px 8px;
+  padding:0px;
+  font-weight:500;
+  font-style:normal;
+  font-variant:normal;
+  font-kerning:auto;
+  font-optical-sizing:auto;
+  font-stretch:100%;
+  font-variation-settings:normal;
+  font-feature-settings:normal;
+  text-transform:none;
+  text-decoration:none solid rgb(23, 162, 184);
+  text-align:center;
+  text-indent:0px;
+}
+.form-control{
+  padding: 0.7rem;
+  background-color: transparent;
+  transition: all 0.5s ease-in-out; 
+}
+
+.form-control::placeholder{
+  color: #babcbc;
+}
+#header .btn{
+  margin-top: 2.4rem;
+}
+.form-control:focus {
+  background-color: transparent;
+  color: white;
+  transition: all 0.5s ease-in-out;
+}
+#alert{
+  transition: all 1s ease-in-out;
+}
+/* css for the home page */
+#header-homepage .group{
+  background-color: var(--main-color);
+  box-shadow: var(--main-box-shadow);
+  padding: 5rem;
+  width: 55%;
+}
+#header-homepage .group h1{
+  font-size: 4rem;
+  color: var(--second-color);
+  line-height:48px;
+  vertical-align:baseline;
+  letter-spacing:normal;
+  word-spacing:0px;
+  margin:0px 0px 8px;
+  padding:0px;
+  font-weight:500;
+  font-style:normal;
+  font-variant:normal;
+  font-kerning:auto;
+  font-optical-sizing:auto;
+  font-stretch:100%;
+  font-variation-settings:normal;
+  font-feature-settings:normal;
+  text-transform:none;
+  text-decoration:none solid rgb(23, 162, 184);
+  text-align:center;
+  text-indent:0px;
+}
+/* third pag css */
+.navbar {
+  font-size: 2rem;
+  box-shadow: var(--main-box-shadow);
+  margin-bottom: 2rem;
+
+}
+.navbar .container{
+  padding-inline: 10rem;
+}
+.navbar  .navbar-brand{
+  font-size: 2rem;
+}
+.navbar .btn{
+ 	padding: .7rem;
+  color: rgba(255,255,255,.5);
+  font-size: 1.7rem;
+  width: 100%;
+
+}
+.navbar-toggler {
+  font-size: 2rem;
+}
+
+@media (max-width:450px) { 
+    
+  #header-homepage .group{
+    padding: 2rem;
+  }
+  #header-homepage .group h1{ font-size: 2rem;}
+ }
+ @media (max-width:300px) { 
+  #header-homepage .group h1 {
+    font-size: 1rem;
+  }
+ }
+ @media (max-width:180px) { 
+  #header-homepage .group h1 {
+    font-size: 1rem;
+  }
+ }
