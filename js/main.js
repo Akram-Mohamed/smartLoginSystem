@@ -3,7 +3,7 @@ var email=document.getElementById('email');
 var password=document.getElementById('password');
 var userNameShow=document.getElementById('user-name-show');
 var logoutBtn=document.getElementById('logout-btn')
-var nameRegex=/^\w{4,}(\s+\w+)*$/;
+var nameRegex=/^[A-Z]\w{3,}(\s+\w+)*$/;
 //-------- var emailRegex=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w*)+$/g; --------
 var emailRegex=/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
 var passwordRegex=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{7,}$/; 
@@ -44,10 +44,15 @@ if (entryBtn.innerHTML=='Sign Up') {
         
 // --------email input--------
     email.addEventListener('input',function () 
-    {   if (emailRegex.test(email.value) && emailRepeated(email.value))  {  
+    {   if (emailRegex.test(email.value) && !emailRepeated(email.value))  {  
                 emailValidation(true);
                 alretHolder.classList.add('d-none');
-         } else {emailValidation(false);    }
+         } 
+          else if ( emailRepeated(email.value) ) { 
+            nameValidation(true);
+            emailRepeatedWarning(false);
+         }
+         else {emailValidation(false);    }
     });
 // --------password input--------
     password.addEventListener('input',function () 
@@ -71,19 +76,27 @@ if (entryBtn.innerHTML=='Sign Up') {
             alretHolder.innerHTML=('you have an Empty data ??<3');
             alretHolder.classList.remove('d-none'); 
             timeout();
+          
         }
-    else if ( nameRegex.test(userName.value) && emailRegex.test(email.value) && emailRepeated(email.value)  && passwordRegex.test(password.value)    ) 
+    else if ( nameRegex.test(userName.value) && emailRegex.test(email.value) && !emailRepeated(email.value)  && passwordRegex.test(password.value)    ) 
         {       storeUsersData();
                 clearingValidClasses();   
                 clearingValues();
                 clearingAlret() ;
                 timeout();
+                setTimeout(() => {
+                    window.open('index.html', '_self');
+                }, 2000);
+               
         } 
 
         else if ( !nameRegex.test(userName.value) ) 
         {    nameValidation(false);  }
-
-        else if (  !emailRegex.test(email.value) && !emailRepeated(email.value) ) 
+        else if ( emailRepeated(email.value) ) { 
+            nameValidation(true);
+            emailRepeatedWarning(false);
+         }
+        else if (  !emailRegex.test(email.value) && emailRepeated(email.value) ) 
         {   nameValidation(true);
             emailValidation(false);
         }
@@ -151,7 +164,7 @@ if (document.body.contains(logoutBtn)) {
 
         }
         else if ( !checkedValue) {
-            alretHolder.innerHTML=('your username is wrong >> ( ex: akram  )need 4 char ')
+            alretHolder.innerHTML=('your username is wrong >> ( ex: Akram  )need 4 char starting with capital ')
             alretHolder.classList.remove('d-none');
             userName.classList.remove('is-valid');
             userName.classList.add('is-invalid');  
@@ -165,13 +178,27 @@ if (document.body.contains(logoutBtn)) {
         
         }
         else if (  !checkedValue) {
-            alretHolder.innerHTML=('you mail is wrong or << --you mail is repeated-- >> ( ex: anystring@anystring.any)  ')
+            alretHolder.innerHTML=('you mail is wrong  ( ex: anystring@anystring.any)  ')
             alretHolder.classList.remove('d-none');
             email.classList.remove('is-valid');
             email.classList.add('is-invalid');
         } 
 
     }
+// email repeated warning
+    function emailRepeatedWarning(checkedValue) {
+        if (checkedValue ) {
+            email.classList.remove('is-invalid');
+            email.classList.add('is-valid');
+        
+        }
+        else if (  !checkedValue) {
+            alretHolder.innerHTML=('< --you mail is repeated-- >>   ')
+            alretHolder.classList.remove('d-none');
+            email.classList.remove('is-valid');
+            email.classList.add('is-invalid');
+        } 
+    }  
     function passwordValidation(checkedValue) {
         if ( checkedValue ) {
             password.classList.remove('is-invalid');
@@ -205,7 +232,7 @@ if (document.body.contains(logoutBtn)) {
 
     function clearingAlret() {
         //modify alert 
-        alretHolder.innerHTML=('Success ');
+        alretHolder.innerHTML=('Succes << -- login will open right now -- >> ');
         alretHolder.classList.remove('alert-danger');
         alretHolder.classList.replace('text-danger','text-success');
         alretHolder.classList.remove('d-none');
@@ -238,10 +265,10 @@ function logout() {
 }
 //check if email was repeated
     function emailRepeated(email) {
-        var check=true;
+        var check=false;
                 for (var i = 0; i < allUsers.length; i++) {
                 if ( allUsers[i].userEmail==email) 
-                {  check=false; } 
+                {  check=true; } 
                 }
         return check;
     }
