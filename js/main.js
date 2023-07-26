@@ -49,7 +49,6 @@ if (entryBtn.innerHTML=='Sign Up') {
                 alretHolder.classList.add('d-none');
          } 
           else if ( emailRepeated(email.value) ) { 
-            nameValidation(true);
             emailRepeatedWarning(false);
          }
          else {emailValidation(false);    }
